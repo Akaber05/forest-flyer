@@ -1,0 +1,1269 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Forest Flyer - Voice Controlled Nature Adventure</title>
+    <style>
+        :root {
+  /* Primitive Color Tokens */
+  --color-white: rgba(255, 255, 255, 1);
+  --color-black: rgba(0, 0, 0, 1);
+  --color-cream-50: rgba(252, 252, 249, 1);
+  --color-cream-100: rgba(255, 255, 253, 1);
+  --color-gray-200: rgba(245, 245, 245, 1);
+  --color-gray-300: rgba(167, 169, 169, 1);
+  --color-gray-400: rgba(119, 124, 124, 1);
+  --color-slate-500: rgba(98, 108, 113, 1);
+  --color-brown-600: rgba(94, 82, 64, 1);
+  --color-charcoal-700: rgba(31, 33, 33, 1);
+  --color-charcoal-800: rgba(38, 40, 40, 1);
+  --color-slate-900: rgba(19, 52, 59, 1);
+  --color-teal-300: rgba(50, 184, 198, 1);
+  --color-teal-400: rgba(45, 166, 178, 1);
+  --color-teal-500: rgba(33, 128, 141, 1);
+  --color-teal-600: rgba(29, 116, 128, 1);
+  --color-teal-700: rgba(26, 104, 115, 1);
+  --color-teal-800: rgba(41, 150, 161, 1);
+  --color-red-400: rgba(255, 84, 89, 1);
+  --color-red-500: rgba(192, 21, 47, 1);
+  --color-orange-400: rgba(230, 129, 97, 1);
+  --color-orange-500: rgba(168, 75, 47, 1);
+
+  /* RGB versions for opacity control */
+  --color-brown-600-rgb: 94, 82, 64;
+  --color-teal-500-rgb: 33, 128, 141;
+  --color-slate-900-rgb: 19, 52, 59;
+  --color-slate-500-rgb: 98, 108, 113;
+  --color-red-500-rgb: 192, 21, 47;
+  --color-red-400-rgb: 255, 84, 89;
+  --color-orange-500-rgb: 168, 75, 47;
+  --color-orange-400-rgb: 230, 129, 97;
+
+  /* Background color tokens (Light Mode) */
+  --color-bg-1: rgba(59, 130, 246, 0.08);
+  --color-bg-2: rgba(245, 158, 11, 0.08);
+  --color-bg-3: rgba(34, 197, 94, 0.08);
+  --color-bg-4: rgba(239, 68, 68, 0.08);
+  --color-bg-5: rgba(147, 51, 234, 0.08);
+  --color-bg-6: rgba(249, 115, 22, 0.08);
+  --color-bg-7: rgba(236, 72, 153, 0.08);
+  --color-bg-8: rgba(6, 182, 212, 0.08);
+
+  /* Semantic Color Tokens (Light Mode) */
+  --color-background: var(--color-cream-50);
+  --color-surface: var(--color-cream-100);
+  --color-text: var(--color-slate-900);
+  --color-text-secondary: var(--color-slate-500);
+  --color-primary: var(--color-teal-500);
+  --color-primary-hover: var(--color-teal-600);
+  --color-primary-active: var(--color-teal-700);
+  --color-secondary: rgba(var(--color-brown-600-rgb), 0.12);
+  --color-secondary-hover: rgba(var(--color-brown-600-rgb), 0.2);
+  --color-secondary-active: rgba(var(--color-brown-600-rgb), 0.25);
+  --color-border: rgba(var(--color-brown-600-rgb), 0.2);
+  --color-btn-primary-text: var(--color-cream-50);
+  --color-card-border: rgba(var(--color-brown-600-rgb), 0.12);
+  --color-card-border-inner: rgba(var(--color-brown-600-rgb), 0.12);
+  --color-error: var(--color-red-500);
+  --color-success: var(--color-teal-500);
+  --color-warning: var(--color-orange-500);
+  --color-info: var(--color-slate-500);
+  --color-focus-ring: rgba(var(--color-teal-500-rgb), 0.4);
+  --color-select-caret: rgba(var(--color-slate-900-rgb), 0.8);
+
+  /* Typography */
+  --font-family-base: "FKGroteskNeue", "Geist", "Inter", -apple-system,
+    BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+  --font-size-xs: 11px;
+  --font-size-sm: 12px;
+  --font-size-base: 14px;
+  --font-size-md: 14px;
+  --font-size-lg: 16px;
+  --font-size-xl: 18px;
+  --font-size-2xl: 20px;
+  --font-size-3xl: 24px;
+  --font-size-4xl: 30px;
+  --font-weight-normal: 400;
+  --font-weight-medium: 500;
+  --font-weight-semibold: 550;
+  --font-weight-bold: 600;
+  --line-height-tight: 1.2;
+  --line-height-normal: 1.5;
+  --letter-spacing-tight: -0.01em;
+
+  /* Spacing */
+  --space-0: 0;
+  --space-1: 1px;
+  --space-2: 2px;
+  --space-4: 4px;
+  --space-6: 6px;
+  --space-8: 8px;
+  --space-10: 10px;
+  --space-12: 12px;
+  --space-16: 16px;
+  --space-20: 20px;
+  --space-24: 24px;
+  --space-32: 32px;
+
+  /* Border Radius */
+  --radius-sm: 6px;
+  --radius-base: 8px;
+  --radius-md: 10px;
+  --radius-lg: 12px;
+  --radius-full: 9999px;
+
+  /* Shadows */
+  --shadow-xs: 0 1px 2px rgba(0, 0, 0, 0.02);
+  --shadow-sm: 0 1px 3px rgba(0, 0, 0, 0.04), 0 1px 2px rgba(0, 0, 0, 0.02);
+  --shadow-md: 0 4px 6px -1px rgba(0, 0, 0, 0.04),
+    0 2px 4px -1px rgba(0, 0, 0, 0.02);
+  --shadow-lg: 0 10px 15px -3px rgba(0, 0, 0, 0.04),
+    0 4px 6px -2px rgba(0, 0, 0, 0.02);
+  --shadow-inset-sm: inset 0 1px 0 rgba(255, 255, 255, 0.15),
+    inset 0 -1px 0 rgba(0, 0, 0, 0.03);
+
+  /* Animation */
+  --duration-fast: 150ms;
+  --duration-normal: 250ms;
+  --ease-standard: cubic-bezier(0.16, 1, 0.3, 1);
+
+  /* Layout */
+  --container-sm: 640px;
+  --container-md: 768px;
+  --container-lg: 1024px;
+  --container-xl: 1280px;
+}
+
+/* Base styles */
+html {
+  font-size: var(--font-size-base);
+  font-family: var(--font-family-base);
+  line-height: var(--line-height-normal);
+  color: var(--color-text);
+  background-color: var(--color-background);
+  -webkit-font-smoothing: antialiased;
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  padding: 0;
+  overflow: hidden;
+  background: linear-gradient(to bottom, #87CEEB 0%, #9ACD32 50%, #8B4513 100%);
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: inherit;
+}
+
+        body {
+            margin: 0;
+            padding: 0;
+            overflow: hidden;
+            background: linear-gradient(to bottom, #87CEEB 0%, #9ACD32 50%, #8B4513 100%);
+            font-family: var(--font-family-base);
+            color: var(--color-text);
+        }
+        
+        #gameCanvas {
+            display: block;
+            margin: 0 auto;
+            background: transparent;
+            border-radius: var(--radius-lg);
+            box-shadow: var(--shadow-lg);
+        }
+        
+        .game-container {
+            position: relative;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            min-height: 100vh;
+            padding: var(--space-20);
+        }
+        
+        .ui-overlay {
+            position: absolute;
+            top: var(--space-20);
+            left: var(--space-20);
+            right: var(--space-20);
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            pointer-events: none;
+            z-index: 10;
+        }
+        
+        .score-display {
+            background: rgba(255, 255, 255, 0.9);
+            padding: var(--space-12) var(--space-16);
+            border-radius: var(--radius-lg);
+            font-size: var(--font-size-2xl);
+            font-weight: var(--font-weight-bold);
+            color: var(--color-text);
+            box-shadow: var(--shadow-md);
+            min-width: 80px;
+            text-align: center;
+        }
+        
+        .effects-panel {
+            display: flex;
+            flex-direction: column;
+            gap: var(--space-8);
+            max-width: 200px;
+        }
+        
+        .effect-indicator {
+            background: rgba(255, 255, 255, 0.9);
+            padding: var(--space-6) var(--space-12);
+            border-radius: var(--radius-base);
+            font-size: var(--font-size-sm);
+            font-weight: var(--font-weight-medium);
+            color: var(--color-text);
+            display: flex;
+            align-items: center;
+            gap: var(--space-6);
+            box-shadow: var(--shadow-sm);
+        }
+        
+        .mic-status {
+            background: rgba(255, 255, 255, 0.9);
+            padding: var(--space-8) var(--space-12);
+            border-radius: var(--radius-base);
+            font-size: var(--font-size-sm);
+            display: flex;
+            align-items: center;
+            gap: var(--space-8);
+            box-shadow: var(--shadow-sm);
+        }
+        
+        .mic-indicator {
+            width: 12px;
+            height: 12px;
+            border-radius: 50%;
+            background: #ff4444;
+            animation: pulse 2s infinite;
+        }
+        
+        .mic-indicator.active {
+            background: #44ff44;
+        }
+        
+        @keyframes pulse {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0.5; }
+        }
+        
+        .game-menu {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.8);
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            z-index: 20;
+            pointer-events: all;
+        }
+        
+        .menu-content {
+            background: var(--color-surface);
+            padding: var(--space-32);
+            border-radius: var(--radius-lg);
+            text-align: center;
+            max-width: 500px;
+            width: 90%;
+            box-shadow: var(--shadow-lg);
+        }
+        
+        .game-title {
+            font-size: var(--font-size-4xl);
+            font-weight: var(--font-weight-bold);
+            color: var(--color-primary);
+            margin-bottom: var(--space-16);
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+        }
+        
+        .game-subtitle {
+            font-size: var(--font-size-lg);
+            color: var(--color-text-secondary);
+            margin-bottom: var(--space-24);
+        }
+        
+        .voice-commands {
+            text-align: left;
+            margin: var(--space-24) 0;
+            padding: var(--space-16);
+            background: var(--color-bg-3);
+            border-radius: var(--radius-base);
+        }
+        
+        .voice-commands h3 {
+            margin: 0 0 var(--space-12) 0;
+            font-size: var(--font-size-xl);
+            color: var(--color-text);
+        }
+        
+        .command-list {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: var(--space-8);
+            font-size: var(--font-size-sm);
+        }
+        
+        .command-list li {
+            padding: var(--space-4);
+            background: rgba(255, 255, 255, 0.7);
+            border-radius: var(--radius-sm);
+            font-weight: var(--font-weight-medium);
+        }
+        
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            padding: var(--space-12) var(--space-24);
+            border-radius: var(--radius-base);
+            font-size: var(--font-size-lg);
+            font-weight: var(--font-weight-medium);
+            cursor: pointer;
+            transition: all var(--duration-normal) var(--ease-standard);
+            border: none;
+            text-decoration: none;
+            margin: var(--space-8);
+        }
+        
+        .btn--primary {
+            background: var(--color-primary);
+            color: var(--color-btn-primary-text);
+        }
+        
+        .btn--primary:hover {
+            background: var(--color-primary-hover);
+            transform: translateY(-2px);
+            box-shadow: var(--shadow-md);
+        }
+        
+        .btn--secondary {
+            background: var(--color-secondary);
+            color: var(--color-text);
+        }
+        
+        .btn--secondary:hover {
+            background: var(--color-secondary-hover);
+        }
+        
+        .hidden {
+            display: none !important;
+        }
+        
+        .game-instructions {
+            font-size: var(--font-size-base);
+            color: var(--color-text-secondary);
+            margin-bottom: var(--space-16);
+            line-height: 1.6;
+        }
+        
+        .last-command {
+            position: absolute;
+            bottom: var(--space-20);
+            left: 50%;
+            transform: translateX(-50%);
+            background: rgba(255, 255, 255, 0.9);
+            padding: var(--space-8) var(--space-16);
+            border-radius: var(--radius-base);
+            font-size: var(--font-size-sm);
+            font-weight: var(--font-weight-medium);
+            color: var(--color-primary);
+            box-shadow: var(--shadow-sm);
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+        
+        .last-command.show {
+            opacity: 1;
+        }
+    </style>
+</head>
+<body>
+    <div class="game-container">
+        <canvas id="gameCanvas" width="800" height="600"></canvas>
+        
+        <div class="ui-overlay">
+            <div class="score-display" id="scoreDisplay">0</div>
+            <div class="effects-panel" id="effectsPanel"></div>
+        </div>
+        
+        <div class="mic-status" id="micStatus">
+            <div class="mic-indicator" id="micIndicator"></div>
+            <span id="micText">Microphone: Inactive</span>
+        </div>
+        
+        <div class="last-command" id="lastCommand"></div>
+        
+        <div class="game-menu" id="startMenu">
+            <div class="menu-content">
+                <h1 class="game-title">🌲 Forest Flyer 🐦</h1>
+                <p class="game-subtitle">Voice-Controlled Nature Adventure</p>
+                
+                <div class="game-instructions">
+                    <p><strong>How to Play:</strong></p>
+                    <p>• Tap SPACEBAR or click to make your bird flap</p>
+                    <p>• Avoid natural obstacles like tree branches and rocks</p>
+                    <p>• Use your voice to control the environment!</p>
+                </div>
+                
+                <div class="voice-commands">
+                    <h3>🎙️ Voice Commands:</h3>
+                    <ul class="command-list">
+                        <li>"add thunder"</li>
+                        <li>"add wind"</li>
+                        <li>"add rain"</li>
+                        <li>"add fog"</li>
+                        <li>"add rocks"</li>
+                        <li>"add vines"</li>
+                        <li>"add storm"</li>
+                        <li>"clear weather"</li>
+                    </ul>
+                </div>
+                
+                <button class="btn btn--primary" onclick="startGame()">🚀 Start Adventure</button>
+                <button class="btn btn--secondary" onclick="requestMicrophone()">🎤 Enable Microphone</button>
+            </div>
+        </div>
+        
+        <div class="game-menu hidden" id="gameOverMenu">
+            <div class="menu-content">
+                <h2 class="game-title">Game Over</h2>
+                <p class="game-subtitle" id="finalScore">Final Score: 0</p>
+                <p class="game-instructions">The forest adventure has ended, but nature calls you back!</p>
+                <button class="btn btn--primary" onclick="restartGame()">🔄 Play Again</button>
+                <button class="btn btn--secondary" onclick="showStartMenu()">📋 Main Menu</button>
+            </div>
+        </div>
+    </div>
+    
+    <script>
+        // Game constants
+        const GAME_CONFIG = {
+            gravity: 0.6,
+            jumpForce: -8,
+            birdSize: 30,
+            obstacleWidth: 60,
+            obstacleGap: 180,
+            gameSpeed: 2,
+            canvasWidth: 800,
+            canvasHeight: 600
+        };
+        
+        // Game state
+        let gameState = {
+            running: false,
+            score: 0,
+            bird: null,
+            obstacles: [],
+            particles: [],
+            effects: new Set(),
+            lastObstacleX: 0,
+            groundY: 550,
+            cameraShake: 0,
+            windForce: 0,
+            rainIntensity: 0,
+            fogOpacity: 0,
+            lightningFlash: 0
+        };
+        
+        // Voice recognition
+        let recognition = null;
+        let microphoneEnabled = false;
+        
+        // Canvas setup
+        const canvas = document.getElementById('gameCanvas');
+        const ctx = canvas.getContext('2d');
+        
+        // Bird class
+        class Bird {
+            constructor() {
+                this.x = 100;
+                this.y = canvas.height / 2;
+                this.velocity = 0;
+                this.size = GAME_CONFIG.birdSize;
+                this.flapping = false;
+                this.flapTimer = 0;
+            }
+            
+            update() {
+                // Apply gravity
+                this.velocity += GAME_CONFIG.gravity;
+                
+                // Apply wind force if active
+                if (gameState.effects.has('wind_storm')) {
+                    this.x += gameState.windForce * 0.3;
+                    this.velocity += Math.sin(Date.now() * 0.01) * 0.2;
+                }
+                
+                // Update position
+                this.y += this.velocity;
+                
+                // Keep bird in bounds
+                if (this.y < 0) this.y = 0;
+                if (this.y > gameState.groundY - this.size) {
+                    this.y = gameState.groundY - this.size;
+                    gameOver();
+                }
+                
+                // Update flap animation
+                if (this.flapping) {
+                    this.flapTimer++;
+                    if (this.flapTimer > 10) {
+                        this.flapping = false;
+                        this.flapTimer = 0;
+                    }
+                }
+            }
+            
+            flap() {
+                this.velocity = GAME_CONFIG.jumpForce;
+                this.flapping = true;
+                this.flapTimer = 0;
+            }
+            
+            draw() {
+                ctx.save();
+                
+                // Bird body (robin-like colors)
+                ctx.fillStyle = '#D2691E'; // Orange-brown
+                ctx.beginPath();
+                ctx.ellipse(this.x, this.y, this.size * 0.6, this.size * 0.4, 0, 0, Math.PI * 2);
+                ctx.fill();
+                
+                // Bird breast (lighter color)
+                ctx.fillStyle = '#F4A460'; // Sandy brown
+                ctx.beginPath();
+                ctx.ellipse(this.x + 5, this.y + 5, this.size * 0.4, this.size * 0.3, 0, 0, Math.PI * 2);
+                ctx.fill();
+                
+                // Wing
+                const wingOffset = this.flapping ? -5 : 0;
+                ctx.fillStyle = '#8B4513'; // Saddle brown
+                ctx.beginPath();
+                ctx.ellipse(this.x - 5, this.y + wingOffset, this.size * 0.4, this.size * 0.2, -0.3, 0, Math.PI * 2);
+                ctx.fill();
+                
+                // Beak
+                ctx.fillStyle = '#FFD700'; // Gold
+                ctx.beginPath();
+                ctx.moveTo(this.x + this.size * 0.6, this.y);
+                ctx.lineTo(this.x + this.size * 0.8, this.y - 3);
+                ctx.lineTo(this.x + this.size * 0.8, this.y + 3);
+                ctx.fill();
+                
+                // Eye
+                ctx.fillStyle = '#000';
+                ctx.beginPath();
+                ctx.arc(this.x + 8, this.y - 5, 3, 0, Math.PI * 2);
+                ctx.fill();
+                
+                ctx.restore();
+            }
+        }
+        
+        // Obstacle class
+        class Obstacle {
+            constructor(x, type = 'tree_branch') {
+                this.x = x;
+                this.type = type;
+                this.width = type === 'vine_obstacles' ? 15 : 
+                           type === 'rock_formation' ? 80 : GAME_CONFIG.obstacleWidth;
+                this.gap = GAME_CONFIG.obstacleGap;
+                this.gapY = Math.random() * (canvas.height - this.gap - 200) + 100;
+                this.passed = false;
+            }
+            
+            update() {
+                this.x -= GAME_CONFIG.gameSpeed;
+            }
+            
+            draw() {
+                ctx.save();
+                
+                // Top obstacle
+                if (this.type === 'vine_obstacles') {
+                    this.drawVine(this.x, 0, this.width, this.gapY);
+                } else if (this.type === 'rock_formation') {
+                    this.drawRock(this.x, 0, this.width, this.gapY);
+                } else {
+                    this.drawBranch(this.x, 0, this.width, this.gapY);
+                }
+                
+                // Bottom obstacle
+                const bottomY = this.gapY + this.gap;
+                const bottomHeight = gameState.groundY - bottomY;
+                
+                if (this.type === 'vine_obstacles') {
+                    this.drawVine(this.x, bottomY, this.width, bottomHeight);
+                } else if (this.type === 'rock_formation') {
+                    this.drawRock(this.x, bottomY, this.width, bottomHeight);
+                } else {
+                    this.drawBranch(this.x, bottomY, this.width, bottomHeight);
+                }
+                
+                ctx.restore();
+            }
+            
+            drawBranch(x, y, width, height) {
+                // Tree branch texture
+                const gradient = ctx.createLinearGradient(x, y, x + width, y);
+                gradient.addColorStop(0, '#8B4513');
+                gradient.addColorStop(0.5, '#A0522D');
+                gradient.addColorStop(1, '#654321');
+                
+                ctx.fillStyle = gradient;
+                ctx.fillRect(x, y, width, height);
+                
+                // Bark texture lines
+                ctx.strokeStyle = '#654321';
+                ctx.lineWidth = 2;
+                for (let i = 0; i < height; i += 20) {
+                    ctx.beginPath();
+                    ctx.moveTo(x, y + i);
+                    ctx.lineTo(x + width, y + i + 5);
+                    ctx.stroke();
+                }
+            }
+            
+            drawVine(x, y, width, height) {
+                // Green vine with leaves
+                ctx.fillStyle = '#228B22';
+                ctx.fillRect(x + width/3, y, width/3, height);
+                
+                // Add leaves along the vine
+                ctx.fillStyle = '#32CD32';
+                for (let i = 0; i < height; i += 30) {
+                    // Left leaf
+                    ctx.beginPath();
+                    ctx.ellipse(x, y + i, 8, 12, -0.5, 0, Math.PI * 2);
+                    ctx.fill();
+                    
+                    // Right leaf
+                    ctx.beginPath();
+                    ctx.ellipse(x + width, y + i + 15, 8, 12, 0.5, 0, Math.PI * 2);
+                    ctx.fill();
+                }
+            }
+            
+            drawRock(x, y, width, height) {
+                // Stone/rock texture
+                const gradient = ctx.createRadialGradient(
+                    x + width/2, y + height/2, 0,
+                    x + width/2, y + height/2, width
+                );
+                gradient.addColorStop(0, '#A9A9A9');
+                gradient.addColorStop(0.7, '#808080');
+                gradient.addColorStop(1, '#696969');
+                
+                ctx.fillStyle = gradient;
+                
+                // Irregular rock shape
+                ctx.beginPath();
+                ctx.moveTo(x + width * 0.1, y);
+                ctx.lineTo(x + width * 0.9, y);
+                ctx.lineTo(x + width, y + height * 0.3);
+                ctx.lineTo(x + width * 0.8, y + height);
+                ctx.lineTo(x + width * 0.2, y + height);
+                ctx.lineTo(x, y + height * 0.7);
+                ctx.closePath();
+                ctx.fill();
+                
+                // Add rock cracks
+                ctx.strokeStyle = '#556B2F';
+                ctx.lineWidth = 1;
+                ctx.beginPath();
+                ctx.moveTo(x + width * 0.3, y + height * 0.2);
+                ctx.lineTo(x + width * 0.7, y + height * 0.8);
+                ctx.stroke();
+            }
+            
+            checkCollision(bird) {
+                const birdLeft = bird.x - bird.size/2;
+                const birdRight = bird.x + bird.size/2;
+                const birdTop = bird.y - bird.size/2;
+                const birdBottom = bird.y + bird.size/2;
+                
+                const obsLeft = this.x;
+                const obsRight = this.x + this.width;
+                
+                if (birdRight > obsLeft && birdLeft < obsRight) {
+                    if (birdTop < this.gapY || birdBottom > this.gapY + this.gap) {
+                        return true;
+                    }
+                }
+                return false;
+            }
+        }
+        
+        // Particle class
+        class Particle {
+            constructor(x, y, type) {
+                this.x = x;
+                this.y = y;
+                this.type = type;
+                this.life = 1.0;
+                this.maxLife = 1.0;
+                
+                switch (type) {
+                    case 'rain':
+                        this.vx = 0;
+                        this.vy = Math.random() * 5 + 3;
+                        this.size = Math.random() * 2 + 1;
+                        this.color = '#4169E1';
+                        break;
+                    case 'lightning':
+                        this.vx = (Math.random() - 0.5) * 4;
+                        this.vy = (Math.random() - 0.5) * 4;
+                        this.size = Math.random() * 3 + 2;
+                        this.color = '#FFD700';
+                        this.maxLife = 0.3;
+                        this.life = 0.3;
+                        break;
+                    case 'wind':
+                        this.vx = Math.random() * 3 + 2;
+                        this.vy = (Math.random() - 0.5) * 2;
+                        this.size = Math.random() * 8 + 4;
+                        this.color = '#9ACD32';
+                        this.rotation = Math.random() * Math.PI * 2;
+                        break;
+                    case 'fog':
+                        this.vx = (Math.random() - 0.5) * 0.5;
+                        this.vy = -Math.random() * 0.5;
+                        this.size = Math.random() * 30 + 20;
+                        this.color = '#D3D3D3';
+                        this.opacity = Math.random() * 0.3 + 0.1;
+                        break;
+                }
+            }
+            
+            update() {
+                this.x += this.vx;
+                this.y += this.vy;
+                this.life -= 0.01;
+                
+                if (this.type === 'wind') {
+                    this.rotation += 0.1;
+                }
+                
+                return this.life > 0 && this.x < canvas.width + 50 && this.y < canvas.height + 50;
+            }
+            
+            draw() {
+                ctx.save();
+                
+                const alpha = this.life / this.maxLife;
+                
+                switch (this.type) {
+                    case 'rain':
+                        ctx.globalAlpha = alpha;
+                        ctx.fillStyle = this.color;
+                        ctx.fillRect(this.x, this.y, 2, this.size * 4);
+                        break;
+                        
+                    case 'lightning':
+                        ctx.globalAlpha = alpha;
+                        ctx.fillStyle = this.color;
+                        ctx.shadowBlur = 10;
+                        ctx.shadowColor = this.color;
+                        ctx.beginPath();
+                        ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2);
+                        ctx.fill();
+                        break;
+                        
+                    case 'wind':
+                        ctx.globalAlpha = alpha * 0.7;
+                        ctx.fillStyle = this.color;
+                        ctx.translate(this.x, this.y);
+                        ctx.rotate(this.rotation);
+                        // Draw leaf shape
+                        ctx.beginPath();
+                        ctx.ellipse(0, 0, this.size, this.size * 0.6, 0, 0, Math.PI * 2);
+                        ctx.fill();
+                        break;
+                        
+                    case 'fog':
+                        ctx.globalAlpha = this.opacity * alpha;
+                        ctx.fillStyle = this.color;
+                        ctx.beginPath();
+                        ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2);
+                        ctx.fill();
+                        break;
+                }
+                
+                ctx.restore();
+            }
+        }
+        
+        // Initialize game
+        function initGame() {
+            gameState.bird = new Bird();
+            gameState.obstacles = [];
+            gameState.particles = [];
+            gameState.effects.clear();
+            gameState.score = 0;
+            gameState.lastObstacleX = canvas.width;
+            gameState.cameraShake = 0;
+            gameState.windForce = 0;
+            gameState.rainIntensity = 0;
+            gameState.fogOpacity = 0;
+            gameState.lightningFlash = 0;
+            
+            updateUI();
+        }
+        
+        // Game loop
+        function gameLoop() {
+            if (!gameState.running) return;
+            
+            update();
+            draw();
+            requestAnimationFrame(gameLoop);
+        }
+        
+        function update() {
+            // Update bird
+            gameState.bird.update();
+            
+            // Update obstacles
+            gameState.obstacles.forEach(obstacle => {
+                obstacle.update();
+                
+                // Check collision
+                if (obstacle.checkCollision(gameState.bird)) {
+                    gameOver();
+                    return;
+                }
+                
+                // Score when passing obstacle
+                if (!obstacle.passed && obstacle.x + obstacle.width < gameState.bird.x) {
+                    obstacle.passed = true;
+                    gameState.score++;
+                    updateUI();
+                }
+            });
+            
+            // Remove off-screen obstacles
+            gameState.obstacles = gameState.obstacles.filter(obs => obs.x > -obs.width);
+            
+            // Spawn new obstacles
+            if (gameState.lastObstacleX - gameState.obstacles[gameState.obstacles.length - 1]?.x > 300 || gameState.obstacles.length === 0) {
+                const obstacleType = gameState.effects.has('extra_obstacles') ? 'rock_formation' :
+                                   gameState.effects.has('vine_obstacles') ? 'vine_obstacles' : 'tree_branch';
+                gameState.obstacles.push(new Obstacle(canvas.width, obstacleType));
+                gameState.lastObstacleX = canvas.width;
+            }
+            
+            // Update particles
+            gameState.particles = gameState.particles.filter(particle => particle.update());
+            
+            // Generate environmental particles
+            generateEnvironmentalParticles();
+            
+            // Update environmental effects
+            updateEnvironmentalEffects();
+        }
+        
+        function generateEnvironmentalParticles() {
+            if (gameState.effects.has('rain_storm') || gameState.effects.has('mega_storm')) {
+                for (let i = 0; i < 3; i++) {
+                    gameState.particles.push(new Particle(
+                        Math.random() * canvas.width,
+                        -10,
+                        'rain'
+                    ));
+                }
+            }
+            
+            if (gameState.effects.has('lightning_storm') || gameState.effects.has('mega_storm')) {
+                if (Math.random() < 0.1) {
+                    gameState.lightningFlash = 1.0;
+                    gameState.cameraShake = 10;
+                    for (let i = 0; i < 20; i++) {
+                        gameState.particles.push(new Particle(
+                            Math.random() * canvas.width,
+                            Math.random() * canvas.height * 0.3,
+                            'lightning'
+                        ));
+                    }
+                }
+            }
+            
+            if (gameState.effects.has('wind_storm') || gameState.effects.has('mega_storm')) {
+                if (Math.random() < 0.3) {
+                    gameState.particles.push(new Particle(
+                        -20,
+                        Math.random() * canvas.height,
+                        'wind'
+                    ));
+                }
+            }
+            
+            if (gameState.effects.has('fog_effect')) {
+                if (Math.random() < 0.2) {
+                    gameState.particles.push(new Particle(
+                        Math.random() * canvas.width,
+                        Math.random() * canvas.height,
+                        'fog'
+                    ));
+                }
+            }
+        }
+        
+        function updateEnvironmentalEffects() {
+            // Camera shake decay
+            if (gameState.cameraShake > 0) {
+                gameState.cameraShake *= 0.9;
+            }
+            
+            // Lightning flash decay
+            if (gameState.lightningFlash > 0) {
+                gameState.lightningFlash *= 0.95;
+            }
+            
+            // Wind force
+            if (gameState.effects.has('wind_storm') || gameState.effects.has('mega_storm')) {
+                gameState.windForce = Math.sin(Date.now() * 0.005) * 2;
+            } else {
+                gameState.windForce = 0;
+            }
+        }
+        
+        function draw() {
+            // Apply camera shake
+            const shakeX = (Math.random() - 0.5) * gameState.cameraShake;
+            const shakeY = (Math.random() - 0.5) * gameState.cameraShake;
+            
+            ctx.save();
+            ctx.translate(shakeX, shakeY);
+            
+            // Clear canvas
+            ctx.clearRect(0, 0, canvas.width, canvas.height);
+            
+            // Draw background
+            drawBackground();
+            
+            // Draw ground
+            drawGround();
+            
+            // Draw obstacles
+            gameState.obstacles.forEach(obstacle => obstacle.draw());
+            
+            // Draw bird
+            gameState.bird.draw();
+            
+            // Draw particles
+            gameState.particles.forEach(particle => particle.draw());
+            
+            // Apply lightning flash
+            if (gameState.lightningFlash > 0) {
+                ctx.fillStyle = `rgba(255, 255, 255, ${gameState.lightningFlash * 0.3})`;
+                ctx.fillRect(0, 0, canvas.width, canvas.height);
+            }
+            
+            // Apply fog overlay
+            if (gameState.effects.has('fog_effect')) {
+                ctx.fillStyle = 'rgba(211, 211, 211, 0.3)';
+                ctx.fillRect(0, 0, canvas.width, canvas.height);
+            }
+            
+            ctx.restore();
+        }
+        
+        function drawBackground() {
+            // Sky gradient
+            const gradient = ctx.createLinearGradient(0, 0, 0, canvas.height);
+            gradient.addColorStop(0, '#87CEEB');
+            gradient.addColorStop(0.6, '#9ACD32');
+            gradient.addColorStop(1, '#228B22');
+            
+            ctx.fillStyle = gradient;
+            ctx.fillRect(0, 0, canvas.width, canvas.height);
+            
+            // Background trees (parallax effect)
+            drawBackgroundTrees();
+        }
+        
+        function drawBackgroundTrees() {
+            ctx.fillStyle = 'rgba(34, 139, 34, 0.6)';
+            
+            // Distant trees
+            for (let x = -100; x < canvas.width + 100; x += 80) {
+                const treeX = x + (gameState.bird.x * 0.1) % 80;
+                const treeHeight = Math.sin(x * 0.01) * 50 + 150;
+                
+                // Tree trunk
+                ctx.fillRect(treeX - 5, canvas.height - 200, 10, 50);
+                
+                // Tree crown
+                ctx.beginPath();
+                ctx.arc(treeX, canvas.height - 200, 30, 0, Math.PI * 2);
+                ctx.fill();
+            }
+            
+            // Middle layer trees
+            ctx.fillStyle = 'rgba(34, 139, 34, 0.8)';
+            for (let x = -150; x < canvas.width + 150; x += 120) {
+                const treeX = x + (gameState.bird.x * 0.2) % 120;
+                
+                // Tree trunk
+                ctx.fillRect(treeX - 8, canvas.height - 150, 16, 80);
+                
+                // Tree crown
+                ctx.beginPath();
+                ctx.arc(treeX, canvas.height - 150, 40, 0, Math.PI * 2);
+                ctx.fill();
+            }
+        }
+        
+        function drawGround() {
+            // Ground base
+            const groundGradient = ctx.createLinearGradient(0, gameState.groundY, 0, canvas.height);
+            groundGradient.addColorStop(0, '#8B4513');
+            groundGradient.addColorStop(0.3, '#A0522D');
+            groundGradient.addColorStop(1, '#654321');
+            
+            ctx.fillStyle = groundGradient;
+            ctx.fillRect(0, gameState.groundY, canvas.width, canvas.height - gameState.groundY);
+            
+            // Grass on top
+            ctx.fillStyle = '#228B22';
+            for (let x = 0; x < canvas.width; x += 5) {
+                const grassHeight = Math.sin(x * 0.1) * 3 + 8;
+                ctx.fillRect(x, gameState.groundY - grassHeight, 2, grassHeight);
+            }
+            
+            // Rocks and details
+            ctx.fillStyle = '#696969';
+            for (let x = 0; x < canvas.width; x += 100) {
+                const rockX = x + Math.sin(x * 0.01) * 20;
+                ctx.beginPath();
+                ctx.arc(rockX, gameState.groundY + 10, Math.random() * 5 + 3, 0, Math.PI * 2);
+                ctx.fill();
+            }
+        }
+        
+        function updateUI() {
+            document.getElementById('scoreDisplay').textContent = gameState.score;
+            
+            const effectsPanel = document.getElementById('effectsPanel');
+            effectsPanel.innerHTML = '';
+            
+            gameState.effects.forEach(effect => {
+                const indicator = document.createElement('div');
+                indicator.className = 'effect-indicator';
+                
+                const icon = getEffectIcon(effect);
+                const name = getEffectName(effect);
+                
+                indicator.innerHTML = `<span>${icon}</span> ${name}`;
+                effectsPanel.appendChild(indicator);
+            });
+        }
+        
+        function getEffectIcon(effect) {
+            const icons = {
+                'lightning_storm': '⚡',
+                'wind_storm': '💨',
+                'rain_storm': '🌧️',
+                'fog_effect': '🌫️',
+                'extra_obstacles': '🪨',
+                'vine_obstacles': '🌿',
+                'mega_storm': '⛈️'
+            };
+            return icons[effect] || '🌟';
+        }
+        
+        function getEffectName(effect) {
+            const names = {
+                'lightning_storm': 'Thunder',
+                'wind_storm': 'Wind',
+                'rain_storm': 'Rain',
+                'fog_effect': 'Fog',
+                'extra_obstacles': 'Rocks',
+                'vine_obstacles': 'Vines',
+                'mega_storm': 'Storm'
+            };
+            return names[effect] || 'Effect';
+        }
+        
+        // Voice recognition setup
+        function initVoiceRecognition() {
+            if ('webkitSpeechRecognition' in window || 'SpeechRecognition' in window) {
+                const SpeechRecognition = window.SpeechRecognition || window.webkitSpeechRecognition;
+                recognition = new SpeechRecognition();
+                
+                recognition.continuous = true;
+                recognition.interimResults = false;
+                recognition.lang = 'en-US';
+                
+                recognition.onstart = function() {
+                    microphoneEnabled = true;
+                    updateMicrophoneStatus();
+                };
+                
+                recognition.onresult = function(event) {
+                    const lastResult = event.results[event.results.length - 1];
+                    if (lastResult.isFinal) {
+                        const command = lastResult[0].transcript.toLowerCase().trim();
+                        processVoiceCommand(command);
+                    }
+                };
+                
+                recognition.onerror = function(event) {
+                    console.log('Speech recognition error:', event.error);
+                };
+                
+                recognition.onend = function() {
+                    if (gameState.running && microphoneEnabled) {
+                        // Restart recognition if game is running
+                        setTimeout(() => recognition.start(), 100);
+                    }
+                };
+            }
+        }
+        
+        function processVoiceCommand(command) {
+            console.log('Voice command:', command);
+            
+            // Show command feedback
+            showLastCommand(command);
+            
+            const commands = {
+                'add thunder': 'lightning_storm',
+                'add wind': 'wind_storm',
+                'add rain': 'rain_storm',
+                'add fog': 'fog_effect',
+                'add rocks': 'extra_obstacles',
+                'add vines': 'vine_obstacles',
+                'add storm': 'mega_storm',
+                'clear weather': 'clear_all'
+            };
+            
+            // Check for command matches
+            for (const [voiceCommand, effect] of Object.entries(commands)) {
+                if (command.includes(voiceCommand.replace('add ', '')) || command.includes(voiceCommand)) {
+                    if (effect === 'clear_all') {
+                        gameState.effects.clear();
+                    } else {
+                        gameState.effects.add(effect);
+                    }
+                    updateUI();
+                    break;
+                }
+            }
+        }
+        
+        function showLastCommand(command) {
+            const lastCommandEl = document.getElementById('lastCommand');
+            lastCommandEl.textContent = `"${command}"`;
+            lastCommandEl.classList.add('show');
+            
+            setTimeout(() => {
+                lastCommandEl.classList.remove('show');
+            }, 3000);
+        }
+        
+        function updateMicrophoneStatus() {
+            const micStatus = document.getElementById('micStatus');
+            const micIndicator = document.getElementById('micIndicator');
+            const micText = document.getElementById('micText');
+            
+            if (microphoneEnabled) {
+                micIndicator.classList.add('active');
+                micText.textContent = 'Microphone: Listening';
+            } else {
+                micIndicator.classList.remove('active');
+                micText.textContent = 'Microphone: Inactive';
+            }
+        }
+        
+        // Game control functions
+        function startGame() {
+            document.getElementById('startMenu').classList.add('hidden');
+            document.getElementById('gameOverMenu').classList.add('hidden');
+            
+            gameState.running = true;
+            initGame();
+            
+            if (recognition && microphoneEnabled) {
+                recognition.start();
+            }
+            
+            gameLoop();
+        }
+        
+        function gameOver() {
+            gameState.running = false;
+            
+            if (recognition) {
+                recognition.stop();
+            }
+            
+            document.getElementById('finalScore').textContent = `Final Score: ${gameState.score}`;
+            document.getElementById('gameOverMenu').classList.remove('hidden');
+        }
+        
+        function restartGame() {
+            startGame();
+        }
+        
+        function showStartMenu() {
+            document.getElementById('gameOverMenu').classList.add('hidden');
+            document.getElementById('startMenu').classList.remove('hidden');
+        }
+        
+        function requestMicrophone() {
+            if (!recognition) {
+                initVoiceRecognition();
+            }
+            
+            if (recognition) {
+                microphoneEnabled = true;
+                updateMicrophoneStatus();
+                alert('Microphone enabled! Start the game to begin voice control.');
+            } else {
+                alert('Voice recognition is not supported in your browser.');
+            }
+        }
+        
+        // Event listeners
+        document.addEventListener('keydown', function(event) {
+            if ((event.code === 'Space' || event.key === ' ') && gameState.running) {
+                event.preventDefault();
+                gameState.bird.flap();
+            }
+        });
+        
+        canvas.addEventListener('click', function() {
+            if (gameState.running) {
+                gameState.bird.flap();
+            }
+        });
+        
+        // Initialize
+        initVoiceRecognition();
+        initGame();
+        updateMicrophoneStatus();
+        
+        // Draw initial state
+        draw();
+    </script>
+</body>
+</html> 
